@@ -244,8 +244,8 @@ dataSources:
           handler: handleESetParamAddress
         - event: ESetParamUint(indexed address,indexed string,uint256)
           handler: handleESetParamUint
-      # blockHandlers:
-      #   - handler: handleBlock
+      blockHandlers:
+        - handler: handleBlock
       file: ./src/mappings/DInterest.ts
   - kind: ethereum/contract
     name: scUSDCPool

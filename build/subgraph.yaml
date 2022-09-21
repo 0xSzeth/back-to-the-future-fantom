@@ -244,6 +244,8 @@ dataSources:
           handler: handleESetParamAddress
         - event: ESetParamUint(indexed address,indexed string,uint256)
           handler: handleESetParamUint
+      blockHandlers:
+        - handler: handleBlock
       file: gDAIPool/gDAIPool.wasm
   - kind: ethereum/contract
     name: scUSDCPool
