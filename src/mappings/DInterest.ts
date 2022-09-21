@@ -1,4 +1,4 @@
-import { BigDecimal, BigInt, Address, ByteArray, crypto, ethereum, dataSource } from "@graphprotocol/graph-ts";
+import { BigDecimal, BigInt, Address, crypto, ethereum, dataSource } from "@graphprotocol/graph-ts";
 import { EDeposit, ETopupDeposit, EWithdraw, EFund, EPayFundingInterest, ESetParamAddress, ESetParamUint } from "../../generated/gDAIPool/DInterest";
 import { DInterest } from '../../generated/gDAIPool/DInterest';
 import { MoneyMarket } from '../../generated/gDAIPool/MoneyMarket';
@@ -431,70 +431,70 @@ export function handleESetParamUint(event: ESetParamUint): void {
   pool.save();
 }
 
-// export function handleBlock(block: ethereum.Block): void {
-//   if (block.number.mod(BLOCK_HANDLER_INTERVAL).isZero()) {
-//     // load entities
-//     let pool = getPool(dataSource.address().toHex());
-//     let protocol = getProtocol();
-//
-//     // load contracts
-//     let poolContract = DInterest.bind(dataSource.address());
-//     let moneyMarketContract = MoneyMarket.bind(Address.fromString(pool.moneyMarket));
-//     let poolOracleContract = IInterestOracle.bind(Address.fromString(pool.interestOracle));
-//     let priceOracleContract = YearnPriceOracle.bind(YEARN_PRICE_ORACLE);
-//
-//     // load storage
-//     let oldDepositUSD = pool.totalDepositUSD;
-//     let oldInterestOwedUSD = pool.totalInterestOwedUSD;
-//     let oldFeeOwedUSD = pool.totalFeeOwedUSD;
-//     let oldSurplusUSD = pool.surplusUSD;
-//     let oldFundedAmountUSD = pool.totalFundedAmountUSD;
-//
-//     // update stablecoin price in USD
-//     let stablecoinPriceUSD = priceOracleContract.try_getPriceUsdcRecommended(Address.fromString(pool.stablecoin));
-//     if (!stablecoinPriceUSD.reverted) {
-//       pool.stablecoinPriceUSD = normalize(stablecoinPriceUSD.value, 6);
-//     }
-//
-//     // update pool surplus
-//     let surplus = poolContract.try_surplus();
-//     if (!surplus.reverted) {
-//       pool.surplus = normalize(surplus.value.value1, pool.stablecoinDecimals.toI32()).times(surplus.value.value0 ? NEGONE_BD : ONE_BD);
-//     }
-//
-//     // update pool moneyMarketIncomeIndex
-//     let moneyMarketIncomeIndex = moneyMarketContract.try_incomeIndex();
-//     if (!moneyMarketIncomeIndex.reverted) {
-//       pool.moneyMarketIncomeIndex = moneyMarketIncomeIndex.value;
-//     }
-//
-//     // update pool oneYearInterestRate
-//     let oneYearInterestRate = poolContract.try_calculateInterestAmount(tenPow(pool.stablecoinDecimals.toI32()), YEAR);
-//     if (!oneYearInterestRate.reverted) {
-//       pool.oneYearInterestRate = normalize(oneYearInterestRate.value);
-//     }
-//
-//     // update pool oracleInterestRate
-//     let oracleInterestRate = poolOracleContract.try_updateAndQuery();
-//     if (!oracleInterestRate.reverted) {
-//       pool.oracleInterestRate = normalize(oracleInterestRate.value.value1);
-//     }
-//
-//     // update pool USD data
-//     pool.totalDepositUSD = pool.totalDeposit.times(pool.stablecoinPriceUSD);
-//     pool.totalInterestOwedUSD = pool.totalInterestOwed.times(pool.stablecoinPriceUSD);
-//     pool.totalFeeOwedUSD = pool.totalFeeOwed.times(pool.stablecoinPriceUSD);
-//     pool.surplusUSD = pool.surplus.times(pool.stablecoinPriceUSD);
-//     pool.totalFundedAmountUSD = pool.totalFundedAmount.times(pool.stablecoinPriceUSD);
-//
-//     // update protocol USD data
-//     protocol.totalDepositUSD = protocol.totalDepositUSD.minus(oldDepositUSD).plus(pool.totalDepositUSD);
-//     protocol.totalInterestOwedUSD = protocol.totalInterestOwedUSD.minus(oldInterestOwedUSD).plus(pool.totalInterestOwedUSD);
-//     protocol.totalFeeOwedUSD = protocol.totalFeeOwedUSD.minus(oldFeeOwedUSD).plus(pool.totalFeeOwedUSD);
-//     protocol.totalSurplusUSD = protocol.totalSurplusUSD.minus(oldSurplusUSD).plus(pool.surplusUSD);
-//     protocol.totalFundedAmountUSD = protocol.totalFundedAmountUSD.minus(oldFundedAmountUSD).plus(pool.totalFundedAmountUSD);
-//
-//     protocol.save();
-//     pool.save();
-//   }
-// }
+export function handleBlock(block: ethereum.Block): void {
+  if (block.number.mod(BLOCK_HANDLER_INTERVAL).isZero()) {
+    // load entities
+    let pool = getPool(dataSource.address().toHex());
+    let protocol = getProtocol();
+
+    // load contracts
+    let poolContract = DInterest.bind(dataSource.address());
+    let moneyMarketContract = MoneyMarket.bind(Address.fromString(pool.moneyMarket));
+    let poolOracleContract = IInterestOracle.bind(Address.fromString(pool.interestOracle));
+    let priceOracleContract = YearnPriceOracle.bind(YEARN_PRICE_ORACLE);
+
+    // load storage
+    let oldDepositUSD = pool.totalDepositUSD;
+    let oldInterestOwedUSD = pool.totalInterestOwedUSD;
+    let oldFeeOwedUSD = pool.totalFeeOwedUSD;
+    let oldSurplusUSD = pool.surplusUSD;
+    let oldFundedAmountUSD = pool.totalFundedAmountUSD;
+
+    // update stablecoin price in USD
+    let stablecoinPriceUSD = priceOracleContract.try_getPriceUsdcRecommended(Address.fromString(pool.stablecoin));
+    if (!stablecoinPriceUSD.reverted) {
+      pool.stablecoinPriceUSD = normalize(stablecoinPriceUSD.value, 6);
+    }
+
+    // update pool surplus
+    let surplus = poolContract.try_surplus();
+    if (!surplus.reverted) {
+      pool.surplus = normalize(surplus.value.value1, pool.stablecoinDecimals.toI32()).times(surplus.value.value0 ? NEGONE_BD : ONE_BD);
+    }
+
+    // update pool moneyMarketIncomeIndex
+    let moneyMarketIncomeIndex = moneyMarketContract.try_incomeIndex();
+    if (!moneyMarketIncomeIndex.reverted) {
+      pool.moneyMarketIncomeIndex = moneyMarketIncomeIndex.value;
+    }
+
+    // update pool oneYearInterestRate
+    let oneYearInterestRate = poolContract.try_calculateInterestAmount(tenPow(pool.stablecoinDecimals.toI32()), YEAR);
+    if (!oneYearInterestRate.reverted) {
+      pool.oneYearInterestRate = normalize(oneYearInterestRate.value);
+    }
+
+    // update pool oracleInterestRate
+    let oracleInterestRate = poolOracleContract.try_updateAndQuery();
+    if (!oracleInterestRate.reverted) {
+      pool.oracleInterestRate = normalize(oracleInterestRate.value.value1);
+    }
+
+    // update pool USD data
+    pool.totalDepositUSD = pool.totalDeposit.times(pool.stablecoinPriceUSD);
+    pool.totalInterestOwedUSD = pool.totalInterestOwed.times(pool.stablecoinPriceUSD);
+    pool.totalFeeOwedUSD = pool.totalFeeOwed.times(pool.stablecoinPriceUSD);
+    pool.surplusUSD = pool.surplus.times(pool.stablecoinPriceUSD);
+    pool.totalFundedAmountUSD = pool.totalFundedAmount.times(pool.stablecoinPriceUSD);
+
+    // update protocol USD data
+    protocol.totalDepositUSD = protocol.totalDepositUSD.minus(oldDepositUSD).plus(pool.totalDepositUSD);
+    protocol.totalInterestOwedUSD = protocol.totalInterestOwedUSD.minus(oldInterestOwedUSD).plus(pool.totalInterestOwedUSD);
+    protocol.totalFeeOwedUSD = protocol.totalFeeOwedUSD.minus(oldFeeOwedUSD).plus(pool.totalFeeOwedUSD);
+    protocol.totalSurplusUSD = protocol.totalSurplusUSD.minus(oldSurplusUSD).plus(pool.surplusUSD);
+    protocol.totalFundedAmountUSD = protocol.totalFundedAmountUSD.minus(oldFundedAmountUSD).plus(pool.totalFundedAmountUSD);
+
+    protocol.save();
+    pool.save();
+  }
+}

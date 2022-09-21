@@ -48,6 +48,8 @@ dataSources:
           handler: handleESetParamAddress
         - event: ESetParamUint(indexed address,indexed string,uint256)
           handler: handleESetParamUint
+      blockHandlers:
+        - handler: handleBlock
       file: gDAIPool/gDAIPool.wasm
   - kind: ethereum/contract
     name: scDAIPool
@@ -95,6 +97,8 @@ dataSources:
           handler: handleESetParamAddress
         - event: ESetParamUint(indexed address,indexed string,uint256)
           handler: handleESetParamUint
+      blockHandlers:
+        - handler: handleBlock
       file: gDAIPool/gDAIPool.wasm
   - kind: ethereum/contract
     name: scFUSDPool
@@ -142,6 +146,8 @@ dataSources:
           handler: handleESetParamAddress
         - event: ESetParamUint(indexed address,indexed string,uint256)
           handler: handleESetParamUint
+      blockHandlers:
+        - handler: handleBlock
       file: gDAIPool/gDAIPool.wasm
   - kind: ethereum/contract
     name: scLINKPool
@@ -189,6 +195,8 @@ dataSources:
           handler: handleESetParamAddress
         - event: ESetParamUint(indexed address,indexed string,uint256)
           handler: handleESetParamUint
+      blockHandlers:
+        - handler: handleBlock
       file: gDAIPool/gDAIPool.wasm
   - kind: ethereum/contract
     name: gUSDCPool
@@ -283,6 +291,8 @@ dataSources:
           handler: handleESetParamAddress
         - event: ESetParamUint(indexed address,indexed string,uint256)
           handler: handleESetParamUint
+      blockHandlers:
+        - handler: handleBlock
       file: gDAIPool/gDAIPool.wasm
   - kind: ethereum/contract
     name: gUSDTPool
@@ -330,6 +340,8 @@ dataSources:
           handler: handleESetParamAddress
         - event: ESetParamUint(indexed address,indexed string,uint256)
           handler: handleESetParamUint
+      blockHandlers:
+        - handler: handleBlock
       file: gDAIPool/gDAIPool.wasm
   - kind: ethereum/contract
     name: scUSDTPool
@@ -377,6 +389,8 @@ dataSources:
           handler: handleESetParamAddress
         - event: ESetParamUint(indexed address,indexed string,uint256)
           handler: handleESetParamUint
+      blockHandlers:
+        - handler: handleBlock
       file: gDAIPool/gDAIPool.wasm
   - kind: ethereum/contract
     name: gWBTCPool
@@ -424,6 +438,8 @@ dataSources:
           handler: handleESetParamAddress
         - event: ESetParamUint(indexed address,indexed string,uint256)
           handler: handleESetParamUint
+      blockHandlers:
+        - handler: handleBlock
       file: gDAIPool/gDAIPool.wasm
   - kind: ethereum/contract
     name: scWBTCPool
@@ -471,6 +487,8 @@ dataSources:
           handler: handleESetParamAddress
         - event: ESetParamUint(indexed address,indexed string,uint256)
           handler: handleESetParamUint
+      blockHandlers:
+        - handler: handleBlock
       file: gDAIPool/gDAIPool.wasm
   - kind: ethereum/contract
     name: gWETHPool
@@ -518,6 +536,8 @@ dataSources:
           handler: handleESetParamAddress
         - event: ESetParamUint(indexed address,indexed string,uint256)
           handler: handleESetParamUint
+      blockHandlers:
+        - handler: handleBlock
       file: gDAIPool/gDAIPool.wasm
   - kind: ethereum/contract
     name: scWETHPool
@@ -565,6 +585,8 @@ dataSources:
           handler: handleESetParamAddress
         - event: ESetParamUint(indexed address,indexed string,uint256)
           handler: handleESetParamUint
+      blockHandlers:
+        - handler: handleBlock
       file: gDAIPool/gDAIPool.wasm
   - kind: ethereum/contract
     name: gWFTMPool
@@ -612,6 +634,8 @@ dataSources:
           handler: handleESetParamAddress
         - event: ESetParamUint(indexed address,indexed string,uint256)
           handler: handleESetParamUint
+      blockHandlers:
+        - handler: handleBlock
       file: gDAIPool/gDAIPool.wasm
   - kind: ethereum/contract
     name: scWFTMPool
@@ -659,6 +683,8 @@ dataSources:
           handler: handleESetParamAddress
         - event: ESetParamUint(indexed address,indexed string,uint256)
           handler: handleESetParamUint
+      blockHandlers:
+        - handler: handleBlock
       file: gDAIPool/gDAIPool.wasm
   - kind: ethereum/contract
     name: Vesting02
